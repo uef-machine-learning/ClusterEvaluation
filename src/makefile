@@ -1,11 +1,13 @@
-MODULES = ../modules/
-OBJECTS = ../modules/
+MODULES = modules/
+OBJECTS = modules/
 PRGNAME = cbevi
 DEPENDS = $(OBJECTS)cb.o          \
           $(OBJECTS)file.o        \
           $(OBJECTS)interfc.o     \
           $(OBJECTS)memctrl.o     \
           $(OBJECTS)random.o      \
+          $(OBJECTS)textfile.o      \
+          $(OBJECTS)fvec.o      \
           $(OBJECTS)evi.o
 	  
 OPT     = -std=c99 -O3 -Wall  -I. -I$(MODULES)

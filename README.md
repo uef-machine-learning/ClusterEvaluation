@@ -4,8 +4,8 @@ Implementation of Centroid index: Cluster level similarity measure [1,2] and oth
 # Generalized Centroid Index (Ruby implementation)
 Takes as input two .pa cluster partition files (header can be omitted)
 ```
-git clone https://github.com/uef-machine-learning/CentroidIndex.git
-cd src
+git clone https://github.com/uef-machine-learning/ClusterEvaluation.git
+cd ClusterEvaluation/src
 ./generalized_ci.rb example_data/s4-gt.pa example_data/s4-result.pa
 ```
 
@@ -13,8 +13,8 @@ cd src
 This project's depends on the CBModules package as a dependency. So for compiling this project, you need to run these commands:
 ```
 git clone https://github.com/uef-machine-learning/CBModules.git
-git clone https://github.com/uef-machine-learning/CentroidIndex.git
-cd CentroidIndex/src
+git clone https://github.com/uef-machine-learning/ClusterEvaluation.git
+cd ClusterEvaluation/src
 cp -r ../../CBModules/src/modules/ .
 make
 ```

@@ -15,10 +15,10 @@ Fact( PairCounting,
                   
 Fact( SetMatching,
       "Set matching indexes",
-      'M', 1, ENUM, 0, 0, 5, 3, NO,
-      NO_SM, NVD, CH, CI, CIstar, CIpart, sm7, sm8, sm9, sm10,
+      'M', 1, ENUM, 0, 0, 4, 3, NO,
+      NO_SM, NVD, CH, CI, CIstar, sm6, sm7, sm8, sm9, sm10,
       "Not selected", "Normalized Van Dongen" , "Criterion H", "Centroid Index" , "CI*", 
-                  "CIpart", 0, 0, 0, 0, YES )
+                  0, 0, 0, 0, 0, YES )
       
 Fact( QuietLevel,
       "Quiet level",

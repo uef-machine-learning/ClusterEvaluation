@@ -93,9 +93,6 @@ int PerformEVI(TRAININGSET   *TS, PARTITIONING *pP1, PARTITIONING *pP2, CODEBOOK
     case INDEX_CIstar:
       indexeValue = EVI_CISTAR(TS, pCB1, pCB2, quietLevel);
       break;
-    case INDEX_CIpart:
-      indexeValue = EVI_CIpart(pP1, pP2, quietLevel);
-      break;
     case INDEX_CH:
       indexeValue = EVI_CH(pP1, pP2, quietLevel);
       break;
@@ -107,65 +104,6 @@ int PerformEVI(TRAININGSET   *TS, PARTITIONING *pP1, PARTITIONING *pP2, CODEBOOK
   return 0;
 
 }  /* PerformEVI2() */
-
-
-
-int CIpartGetOrphanCount(PARTITIONING *pP1, PARTITIONING *pP2, int quietLevel)
-{
-  int n, n1, n2, size,i1,i2;
-  n1 = pP1->PartitionCount;
-  n2 = pP2->PartitionCount;
-  int *contigencyTable;
-  int *counts = (int *)calloc(n2,sizeof(int));
-  int zeros=0;
-  contigencyTable = (int *)malloc(sizeof(int)*(n1*n2));
-  Contingency(pP1, pP2, contigencyTable);
-
-  for ( i1 = 0 ; i1 < n1 ; i1++ )
-  {
-      int max,maxInd,tmp;
-      max=0;
-
-      for ( i2 = 0 ; i2 < n2 ; i2++ )
-      {
-          tmp = contigencyTable[i2*n2+i1];
-
-          if (tmp > max)
-          {
-              max = tmp;
-              maxInd=i2;
-          }
-      }
-
-      counts[maxInd]++;
-  }
-
-
-  for ( i2 = 0 ; i2 < n2 ; i2++ )
-  {
-      if(counts[i2]==0) { zeros++; }
-  }
-
-  free(contigencyTable);
-  return zeros;
-
-}
-// CI indexd based on partitions
-double EVI_CIpart(PARTITIONING *pP1, PARTITIONING *pP2, int quietLevel)
-{
-  int CI,zeros;
-
-  //printf("From P1 to P2:\n");
-  zeros = CIpartGetOrphanCount(pP1, pP2, quietLevel);
-  CI = zeros;
-
-  //printf("From P2 to P1:\n");
-  zeros = CIpartGetOrphanCount(pP2, pP1, quietLevel);
-  if(zeros > CI) { CI = zeros; }
-
-  return (double) CI;
-}
-
 
 /*============  External validity indexes algorithms  ===============*/
 

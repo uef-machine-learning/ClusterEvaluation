@@ -38,7 +38,6 @@ double EVI_JACCARD(PARTITIONING *pP1, PARTITIONING *pP2, int quietLevel);
 double EVI_FM(PARTITIONING *pP1, PARTITIONING *pP2, int quietLevel);
 double EVI_CH(PARTITIONING *pP1, PARTITIONING *pP2, int quietLevel);
 double EVI_CI(CODEBOOK *pCB1, CODEBOOK *pCB2, int quietLevel);
-double EVI_CIpart(PARTITIONING *pP1, PARTITIONING *pP2, int quietLevel);
 double EVI_CI_testClusterSizes(TRAININGSET   *TS, CODEBOOK* pCB1, CODEBOOK* pCB2, int quietLevel);
 double EVI_CISTAR(TRAININGSET   *TS, CODEBOOK *pCB1, CODEBOOK *pCB2, int quietLevel);
 

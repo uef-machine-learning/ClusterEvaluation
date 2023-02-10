@@ -6,9 +6,14 @@ def read_pa(pafn)
   # ignore "VQ PARTITIONING 2.0" header if exists
   (1..10).each { |i| header_end = i if /\----+/.match(pa[i]) }
 
-  # Input file labels start from 1, convert to start from 0
   labels = pa[(header_end + 1)..-1].collect { |x| x.to_i - 1 }
   k = labels.uniq.size
+  
+  # Remap labels in case not in range 0..(k-1)
+  lmap = {}
+  labels.uniq.each.with_index{|x,i|lmap[x]=i}
+  labels.size.times{|i|labels[i] = lmap[labels[i]]}
+
   return [labels, k]
 end
 
@@ -57,6 +62,7 @@ end
 
 (paA, kA) = read_pa(ARGV[0])
 (paB, kB) = read_pa(ARGV[1])
+
 exit! if paA.size != paB.size
 
 zeroA = get_orphan_count(paA, kA, paB, kB)
